@@ -28,7 +28,9 @@ typedef struct {
 3. 获取线程编号（全局变量递增）
 4. while(pool->keepalive)
     1. 加锁
-    2. 队列为空就 wait
+    2. 队列为空就 pthread_cond_timedwait(条件变量, 300ms)
+        1. 新任务加入队列时会广播条件变量
+        2. 超时 300ms（否则无法主动退出线程）
     3. 获取队首任务
     4. 释放锁
     5. 执行任务
