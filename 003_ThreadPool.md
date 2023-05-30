@@ -23,13 +23,30 @@ typedef struct {
 4. 创建 threads 个线程
 
 ### 三、线程函数：
-1. pthread_detach()
-2. 获取线程编号（全局变量递增）
-3. while(pool->keepalive)
+1. 入参为线程池对象
+2. pthread_detach()
+3. 获取线程编号（全局变量递增）
+4. while(pool->keepalive)
     1. 加锁
     2. 队列为空就 wait
     3. 获取队首任务
     4. 释放锁
     5. 执行任务
     6. 释放任务
-4. 退出线程，pool->threads-- 
+5. 退出线程，pool->threads-- 
+
+### 四、销毁所有线程
+1. pool->threads = 0
+2. 等待 2s
+
+### 五、销毁线程池
+1. 销毁所有线程
+2. 销毁锁、条件变量
+3. 清空任务队列
+4. 销毁线程池对象
+
+### 六、添加任务到队列
+1. 加锁
+2. Push() 任务到队列
+3. pthread_cond_broadcast() 唤醒线程
+4. 释放锁
