@@ -12,32 +12,36 @@
 √引用
 √操作符重载
 √cin cout
+√获取 auto 的类型
 
 unique_ptr、shared_ptr、make_unique
-获取 auto 的类型
-
 
 并发编程
 	√阻塞、非阻塞
 	√同步、异步
 	√自己使用链表管理一批非阻塞的 fd，轮询处理，跟 poll 有什么区别？
-	√信号量
+	g'g信号k'k
 		锁：同一时刻只允许一个线程持有
 		信号量：同一时刻允许多个线程持有
 	√共享内存，以及它的锁：互斥锁、信号量
-	锁
-		线程锁
+	√零拷贝
+	√锁
+		√线程锁
 			√互斥锁
-			条件变量
+			√条件变量
 			√读写锁
 			√自旋锁
 				怎样理解自旋锁的非阻塞：对调用者来说是阻在那里的，但是线程没有 sleep 让出 CPU
 		√文件锁
 			锁类型   绑定对象    进程终止行为
 			fcntl()  进程        进程终止后所有锁自动释放
-			flock()  文件描述符  进程终止后文件描述符关闭，锁释放
+			foock()  文件描述符  进程终止后文件描述符关闭，锁释放
 
-货拉拉
+√学习 TCP 代理框架
+	你的 TCP 代理服务使用的是典k的双向转发 + 业务处理解耦的模型，其中 <EpollEventThreadNum> 和 <TaskDealThreadNum> 处理请求方向（client → proxy → backend），而 <EpollTransEventThreadNum> 和 <TransTaskDealThreadNum> 处理应答方向（backend → proxy → client）。这是双向流独立处理线程池的结构。
+
+
+√货拉拉
 	IP 查找
 	配置下发问题
 
